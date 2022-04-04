@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 
@@ -24,22 +26,27 @@ namespace the_office_quotes.Controllers
         [HttpGet]
         public async Task<IActionResult> GetRandomQuote()
         {
-            using var response = await _client.GetAsync($"{_config.ApiUrl}/quotes/random");
+            var characterId = string.Empty;
+            dynamic quoteRaw = default;
 
-            if (response.IsSuccessStatusCode)
+            while(!_config.AllowedCharactersIds.Any(id => id == characterId))
             {
-                string content = await response.Content.ReadAsStringAsync();
-                dynamic quoteRaw = JsonConvert.DeserializeObject(content);
+                using var response = await _client.GetAsync($"{_config.ApiUrl}/quotes/random");
 
-                return Ok(new ResponseData()
-                {
-                    Quote = quoteRaw.data.content,
-                    Character = $"{quoteRaw.data.character.firstname} {quoteRaw.data.character.lastname}",
-                    CharacterId = quoteRaw.data.character._id
-                });
+                response.EnsureSuccessStatusCode();
+
+                string content = await response.Content.ReadAsStringAsync();
+                quoteRaw = JsonConvert.DeserializeObject(content);
+                characterId = quoteRaw.data.character._id;
+                var name = $"{quoteRaw.data.character.firstname} {quoteRaw.data.character.lastname}";
             }
 
-            return NotFound();
+            return Ok(new ResponseData()
+            {
+                Quote = quoteRaw.data.content,
+                Character = $"{quoteRaw.data.character.firstname} {quoteRaw.data.character.lastname}",
+                CharacterId = quoteRaw.data.character._id
+            });
         } 
     }
 
