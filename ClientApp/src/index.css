@@ -1,15 +1,8 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family:'Comic Sans', cursive;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
 }
 
 .container {
@@ -19,56 +12,96 @@ code {
   flex-direction: column;
   height: 100vh;
   width: 100vw;
-  background-color: rgb(167, 167, 167);
+  background-color: rgb(250, 253, 211);
+  background-image:
+  linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px),
+  linear-gradient(#eee .1em, transparent .1em);
+  background-size: 100% 1.2em;
 }
 
 .card{
-  background-color: rgb(79, 79, 79);
-  border-radius: 10px;
+  background-image:radial-gradient(circle, yellow, orange);
+  border:solid 2px #000;
+  box-shadow:0 6px 6px -6px #000;
+  margin:1vmin;
+  overflow:hidden;
   min-height: 300px;
   min-width: 400px;
-  max-width: 70vw;
+  max-width: 50vw;
   padding: 20px;
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 .characterHeaderContainer{
   display: flex;
   justify-content: center;
+  align-items: center;
+  margin: 20px;
 }
 
 .characterHeader{
-  top: -90px;
-  border: #ccc 15px solid;
-  height: 100px;
-  width: 100px;
-  border-radius: 50%;
+  height: 223;
+  width: 222;
 }
 
-.quote{
-  height: 200px;
-  font: italic 2em "Fira Sans", serif;
-  color: #ccc;
-  text-align: center;
+.quote {
+  background-color:#fff;
+  border:solid 2px #000;
+  border-radius:12px;
+  display:inline-block;
+  margin:.5em;
+  padding:.5em 1em;
+  position:relative;
+}
+
+.quote:before {
+  border:solid 15px transparent;
+  border-left:solid 15px #000;
+  border-top:solid 15px #000;
+  bottom:-30px;
+  content:"";
+  height:0;
+  left:126px;
+  position:absolute;
+  transform:skew(45deg);
+  width:0;
+}
+
+.quote:after {
+  border:solid 13px transparent;
+  border-left:solid 13px #fff;
+  border-top:solid 13px #fff;
+  bottom:-25px;
+  content:"";
+  height:0;
+  left:126px;
+  position:absolute;
+  transform:skew(45deg);
+  width:0;
+}
+
+.characterNameContainer{
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
 }
 
 .characterName{
-  text-align: center;
-  font: italic 2em "Fira Sans", serif;
-  color: #ccc;
+  transform:skew(-15deg);
+  background-color:#fff;
+  border:solid 2px #000;
+  margin:0;
+  padding:3px 10px;
+  max-width: 200px;
 }
 
 .button{
-  height: 50px;
-  width: 100px;
-  text-align: center;
-  background-color: rgb(79, 79, 79);
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
-  color: #ccc;
-  border-radius: 5px;
-  margin-top: 50px;
+  background-image:radial-gradient(circle, lightgrey, grey);
+  transform:skew(-15deg);
+  border:solid 2px #000;
+  margin-top: 100px;
+  padding:10px;
+  max-width: 200px;
+  border:solid 2px #000;
+  box-shadow:0 6px 6px -6px #000;
   cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
