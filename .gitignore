@@ -232,5 +232,4 @@ _Pvt_Extensions
 .fake/
 
 # React
-ClientApp/public
 ClientApp/node_modules
