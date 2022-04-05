@@ -8,6 +8,8 @@ import pam from './assets/5e93b50a3af44260882e33b3.png';
 import ryan from './assets/5e93b5183af44260882e33b4.png';
 import erin from './assets/5e93b5653af44260882e33bd.png';
 import kevin from './assets/5e93b5323af44260882e33b7.png';
+import dice from './assets/dice.png';
+import Loader from './Loader';
 
 const characters = {
   '5e93b4a43af44260882e33b0': michael,
@@ -35,12 +37,16 @@ const emptyData: ResponseData = {
 
 function QuotePage() {
   const [state, setState] = useState<ResponseData>(emptyData);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const getData = () => {
+    setIsLoading(true);
     fetch('/office').then(async (rawResponse: any) => {
       const data: ResponseData = await rawResponse.json();
 
       setState(data);
+    }).finally(() => {
+      setIsLoading(false);
     });
   };
 
@@ -49,31 +55,35 @@ function QuotePage() {
   }, []);
 
   return (
-    <div className="container">
-      <div className="card">
-        <div className="quote">
-          {state.quote}
-        </div>
-        <div className="characterHeaderContainer">
-          <div className="characterHeader">
-            <img src={characters[state.characterId]} alt="" />
+    isLoading
+      ? <Loader />
+      : (
+        <div className="container">
+          <div className="card">
+            <div className="quote">
+              {state.quote}
+            </div>
+            <div className="characterHeaderContainer">
+              <div className="characterHeader">
+                <img src={characters[state.characterId]} alt="" />
+              </div>
+            </div>
+            <div className="characterNameContainer">
+              <div className="characterName">
+                {state.character}
+              </div>
+            </div>
+          </div>
+          <div
+            className="button"
+            onClick={() => getData()}
+            onKeyDown={() => getData()}
+            role="none"
+          >
+            <img src={dice} alt="" />
           </div>
         </div>
-        <div className="characterNameContainer">
-          <div className="characterName">
-            {state.character}
-          </div>
-        </div>
-      </div>
-      <div
-        className="button"
-        onClick={() => getData()}
-        onKeyDown={() => getData()}
-        role="none"
-      >
-        Shuffle
-      </div>
-    </div>
+      )
   );
 }
 

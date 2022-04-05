@@ -9,6 +9,11 @@ body {
   -khtml-user-select: none; /* Konqueror HTML */
   -moz-user-select: none; /* Firefox */
   -ms-user-select: none; /* Internet Explorer/Edge */
+  background-color: rgb(250, 253, 211);
+  background-image:
+  linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px),
+  linear-gradient(#eee .1em, transparent .1em);
+  background-size: 100% 1.2em;
 }
 
 .container {
@@ -18,11 +23,6 @@ body {
   flex-direction: column;
   height: 100vh;
   width: 100vw;
-  background-color: rgb(250, 253, 211);
-  background-image:
-  linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px),
-  linear-gradient(#eee .1em, transparent .1em);
-  background-size: 100% 1.2em;
 }
 
 .card{
@@ -101,13 +101,43 @@ body {
 }
 
 .button{
-  background-image:radial-gradient(circle, lightgrey, grey);
-  transform:skew(-15deg);
+  background-image:radial-gradient(circle, orange, red);
   border:solid 2px #000;
-  margin-top: 100px;
+  margin-top: 80px;
   padding:10px;
   max-width: 200px;
-  border:solid 2px #000;
   box-shadow:0 6px 6px -6px #000;
   cursor: pointer;
+}
+
+.button img{
+  height: 50px;
+  width: 50px;
+}
+
+.loaderContainer {
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loader {
+  background-image:radial-gradient(circle, lightgreen, green);
+  border:solid 2px #000;
+  box-shadow:0 6px 6px -6px #000;
+  width: 30vw;
+  height: 30vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.loader img{
+  width: 200px;
+  height: 200px;
 }
